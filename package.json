@@ -1,0 +1,17 @@
+{
+  "name": "nestjs-nextjs-monorepo",
+  "private": true,
+  "devDependencies": {
+    "turbo": "^2.5.2"
+  },
+  "packageManager": "pnpm@8.6.0",
+  "scripts": {
+    "dev": "turbo run dev --parallel",
+    "build": "turbo run build",
+    "lint": "turbo run lint"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
+}
