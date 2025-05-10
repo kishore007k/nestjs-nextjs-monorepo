@@ -1,14 +1,20 @@
 {
   "name": "nestjs-nextjs-monorepo",
   "private": true,
-  "devDependencies": {
-    "turbo": "^2.5.2"
-  },
   "packageManager": "pnpm@8.6.0",
   "scripts": {
     "dev": "turbo run dev --parallel",
     "build": "turbo run build",
     "lint": "turbo run lint"
+  },
+  "devDependencies": {
+    "@turbo/gen": "^2.5.2",
+    "eslint": "^9.25.1",
+    "eslint-config-custom": "*",
+    "prettier": "^3.5.3",
+    "prettier-plugin-tailwindcss": "^0.6.11",
+    "syncpack": "^13.0.4",
+    "turbo": "^2.5.2"
   },
   "workspaces": [
     "apps/*",
