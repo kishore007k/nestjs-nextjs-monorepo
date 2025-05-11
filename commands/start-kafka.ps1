@@ -2,20 +2,26 @@
 $KafkaBase = "C:\kafka_2.13-4.0.0"
 $KafkaBin = Join-Path $KafkaBase "bin\windows"
 $KafkaConfig = Join-Path $KafkaBase "config\server.properties"
-
-# Define Kafka log directory (as set in your server.properties)
-$KafkaLogsDir = "C:\kafka_2.13-4.0.0\logs"  # <-- change this if your log.dirs is different
+$KafkaLogsDir = Join-Path $KafkaBase "logs"
 
 # Check if Kafka is already formatted
-if (-Not (Test-Path "$KafkaLogsDir\meta.properties")) {
+if (-Not (Test-Path (Join-Path $KafkaLogsDir "meta.properties"))) {
     Write-Host "Kafka not formatted yet. Proceeding to generate cluster ID and format..."
 
-    # Generate Kafka Cluster ID (UUID)
+    # Generate Kafka Cluster ID
     $KafkaClusterId = & "$KafkaBin\kafka-storage.bat" random-uuid
+    if ($LASTEXITCODE -ne 0 -or [string]::IsNullOrEmpty($KafkaClusterId)) {
+        Write-Error "Failed to generate Kafka Cluster ID"
+        exit 1
+    }
     Write-Host "Generated Kafka Cluster ID: $KafkaClusterId"
 
     # Format Kafka storage
     & "$KafkaBin\kafka-storage.bat" format -t "$KafkaClusterId" -c "$KafkaConfig"
+    if ($LASTEXITCODE -ne 0) {
+        Write-Error "Kafka storage formatting failed"
+        exit 1
+    }
 } else {
     Write-Host "Kafka is already formatted. Skipping format step."
 }

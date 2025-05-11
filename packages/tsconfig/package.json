@@ -1,9 +1,20 @@
 {
-  "name": "tsconfig",
-  "version": "0.0.0",
+  "name": "@repo/tsconfig",
+  "version": "1.0.0",
   "private": true,
-  "license": "MIT",
-  "publishConfig": {
-    "access": "public"
+  "main": "tsconfig.json",
+  "exports": {
+    ".": {
+      "default": "./tsconfig.json"
+    },
+    "./base": {
+      "default": "./base.json"
+    },
+    "./nestjs": {
+      "default": "./nestjs.json"
+    },
+    "./nextjs": {
+      "default": "./nextjs.json"
+    }
   }
 }

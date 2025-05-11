@@ -9,7 +9,8 @@
     "dev": "nest start --watch"
   },
   "dependencies": {
-    "@kafka": "*",
+    "@repo/kafka": "*",
+    "@repo/types": "*",
     "@nestjs/common": "^10.0.0",
     "@nestjs/core": "^10.0.0",
     "@nestjs/microservices": "^11.1.0",

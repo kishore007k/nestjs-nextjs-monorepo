@@ -1,6 +1,13 @@
 {
-  "extends": "../../tsconfig.base.json",
+  "extends": "@repo/tsconfig/nestjs",
   "compilerOptions": {
-    "outDir": "./dist"
-  }
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "tsBuildInfoFile": "./dist/.tsbuildinfo",
+    "paths": {
+      "@repo/kafka": ["../../packages/kafka"],
+      "@repo/types": ["../../packages/types"]
+    }
+  },
+  "include": ["src/**/*.ts"]
 }
